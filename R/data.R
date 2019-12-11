@@ -9,7 +9,7 @@
 #' }
 #' @usage data(rodent)
 #' @name rodent
-#' @source Bolger et al. 1997, Response of rodents to habitat fragmentation in coastal Southern California, Ecological Applications 7, 552-563 (modified) via \url{https://www.zoology.ubc.ca/~bio501/R/workshops/workshops-multivariate-methods/}
+#' @source Bolger et al. 1997, Response of rodents to habitat fragmentation in coastal Southern California, Ecological Applications 7, 552-563 (as modified and distributed in a University of British Columbia Zoology Department workshop)
 #' @examples
 #' tca(rodent,nAxes=4)
 "rodent"

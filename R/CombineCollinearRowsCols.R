@@ -26,7 +26,7 @@
 CombineCollinearRowsCols <- function(Y, rows = F, cols = F) {
   # print(Y)
   try(Y <- as.matrix(Y))
-  if (class(Y) != "matrix")
+  if (!("matrix" %in% class(Y)))
     return(NULL)
   if (sum(abs(Y)) == 0)
     return(matrix(NA, nrow = 0, ncol = 0))

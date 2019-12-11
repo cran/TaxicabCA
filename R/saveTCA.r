@@ -113,7 +113,6 @@ saveTCA <- function(tcaObject, path  , folder = NULL, what = c("report",
     item <- saveList[2]
     for (item in saveList) {
       eval(parse(text = paste("temp <-", item)))
-      # if (class(temp) %in% c('numeric','matrix'))
       if (grepl("2", csvFormat)) {
         write.csv2(temp, file = paste(folderName, "/",
           item, ".csv", sep = ""))

@@ -52,12 +52,23 @@ tca <- function(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F,
    "criss-cross","genetic"), returnInputMatrix = c(T, F), verbose = (nAxes > 2), exhaustiveAlgorithmMaxnCol = 20,
   L1MaxDeltaMax = 10^-10) {
 
-
-
+  if (F)
+  {
+    # Y <- wideData
+    nAxes <- 2
+    dataName <- NULL
+    combineCollinearRows <- c(F,T)
+    combineCollinearCols <- c(F, T)
+    algorithm <- c("exhaustive",
+                                                                                                              "criss-cross","genetic")
+    returnInputMatrix <- c(T, F)
+    verbose <- (nAxes > 2)
+    exhaustiveAlgorithmMaxnCol <- 20
+  }
 
   ## Check matrix class
   Y <- try(as.matrix(Y))
-  if (class(Y) != "matrix") {
+  if (!("matrix" %in% class(Y))) {
     # cat("\n Invalid input: cannot be coerced into a numerical matrix")
     stop("Input cannot be coerced into a matrix")
     return(NULL)
@@ -114,8 +125,6 @@ tca <- function(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F,
     cat("\n Invalid 'combineCollinearCols' value")
 
 
-
-
   nRow <- nrow(Y)
   nCol <- ncol(Y)
 
@@ -139,6 +148,7 @@ tca <- function(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F,
   ## Use smallest number of columns
   matrixTransposed <- F
   if (nrow(Y) < ncol(Y)) {
+    # print("Matrix will be transposed")
     matrixTransposed <- T
     Y <- t(Y)
   }
@@ -257,17 +267,17 @@ tca <- function(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F,
   GG <- t(B * matrix(1/Tj, nrow = nAxes, ncol = nCol, byrow = T))
 
 
-  if (matrixTransposed) {
-    A. <- A
-    A <- t(B)
-    B <- t(A.)
-    rm(A.)
-    FF. <- FF
-    FF <- t(GG)
-    GG <- t(FF.)
-    rm(FF.)
-    u <- sign(FF)
-  }
+  # if (matrixTransposed) {
+  #   A. <- A
+  #   A <- t(B)
+  #   B <- t(A.)
+  #   rm(A.)
+  #   FF. <- FF
+  #   FF <- t(GG)
+  #   GG <- t(FF.)
+  #   rm(FF.)
+  #   u <- sign(FF)
+  # }
 
 
   # ANorm <- t(t(A)/lambda) BNorm <- (1/lambda)*B
@@ -296,12 +306,38 @@ tca <- function(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F,
 
   if (!returnInputMatrix)
     Y <- NA
-  L <- list(dispersion = lambda, rowScores = rowScores,
-    colScores = colScores, rowMass = Ti, colMass = Tj,
-    nAxes = nAxes, dataName = dataName, algorithm = algorithmUsed,
-    dataMatrixTotal = TOT, dataMatrix = Y, rowColCombined = NULL)
-  class(L) <- c(class(L), "tca")
-  # save(L, file = 'L.RData')
+  if (matrixTransposed) {
+    # print("Transposing back")
+    L <- list(
+      dispersion = lambda,
+      rowScores = t(colScores),
+      colScores = t(rowScores),
+      rowMass = t(Tj),
+      colMass = t(Ti),
+      nAxes = nAxes,
+      dataName = dataName,
+      algorithm = algorithmUsed,
+      dataMatrixTotal = TOT,
+      dataMatrix = t(Y),
+      rowColCombined = NULL
+    )
+  } else {
+  L <- list(
+    dispersion = lambda,
+    rowScores = rowScores,
+    colScores = colScores,
+    rowMass = Ti,
+    colMass = Tj,
+    nAxes = nAxes,
+    dataName = dataName,
+    algorithm = algorithmUsed,
+    dataMatrixTotal = TOT,
+    dataMatrix = Y,
+    rowColCombined = NULL
+  )
+}
+class(L) <- c(class(L), "tca")
+# save(L, file = 'L.RData')
   return(L)
 
 

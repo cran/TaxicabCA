@@ -4,10 +4,18 @@
 \alias{tca}
 \title{Taxicab Correspondance analysis}
 \usage{
-tca(Y, nAxes = 2, dataName = NULL, combineCollinearRows = c(F, T),
-  combineCollinearCols = c(F, T), algorithm = c("exhaustive", "criss-cross",
-  "genetic"), returnInputMatrix = c(T, F), verbose = (nAxes > 2),
-  exhaustiveAlgorithmMaxnCol = 20, L1MaxDeltaMax = 10^-10)
+tca(
+  Y,
+  nAxes = 2,
+  dataName = NULL,
+  combineCollinearRows = c(F, T),
+  combineCollinearCols = c(F, T),
+  algorithm = c("exhaustive", "criss-cross", "genetic"),
+  returnInputMatrix = c(T, F),
+  verbose = (nAxes > 2),
+  exhaustiveAlgorithmMaxnCol = 20,
+  L1MaxDeltaMax = 10^-10
+)
 }
 \arguments{
 \item{Y}{A m x n matrix of non-negative numbers.  If Y is not a matrix, the 'as.matrix' transformation will be attempted.  Missing values are not allowed.}

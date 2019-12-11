@@ -4,9 +4,18 @@
 \alias{plot.tca}
 \title{Creates a symmetric plot from a tca-class object}
 \usage{
-\method{plot}{tca}(x, y = NULL, axes = c(1, 2), labels.rc = c(0, 1),
-  col.rc = c("blue", "red"), pch.rc = c(16, 21, 17, 24), mass.rc = c(F,
-  F), cex.rc = c(NA, NA), jitter = c(T, F), ...)
+\method{plot}{tca}(
+  x,
+  y = NULL,
+  axes = c(1, 2),
+  labels.rc = c(0, 1),
+  col.rc = c("blue", "red"),
+  pch.rc = c(16, 21, 17, 24),
+  mass.rc = c(F, F),
+  cex.rc = c(NA, NA),
+  jitter = c(T, F),
+  ...
+)
 }
 \arguments{
 \item{x}{A tca-class object created by tca}

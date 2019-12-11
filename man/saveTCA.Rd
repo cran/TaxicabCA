@@ -4,11 +4,16 @@
 \alias{saveTCA}
 \title{Save tca results to a folder}
 \usage{
-saveTCA(tcaObject, path, folder = NULL, what = c("report", "csv", "plot",
-  "dataMatrix", "tcaObject"), plotAxes = matrix((1:2), nrow = 1, ncol = 2,
-  byrow = T), graphicDevice = c("pdf", "postscript", "xfig", "bitmap",
-  "pictex", "cairo_pdf", "cairo_ps", "svg", "png", "jpeg", "bmp", "tiff"),
-  csvFormat = c("csv", "csv2"))
+saveTCA(
+  tcaObject,
+  path,
+  folder = NULL,
+  what = c("report", "csv", "plot", "dataMatrix", "tcaObject"),
+  plotAxes = matrix((1:2), nrow = 1, ncol = 2, byrow = T),
+  graphicDevice = c("pdf", "postscript", "xfig", "bitmap", "pictex", "cairo_pdf",
+    "cairo_ps", "svg", "png", "jpeg", "bmp", "tiff"),
+  csvFormat = c("csv", "csv2")
+)
 }
 \arguments{
 \item{tcaObject}{a tca-class object created by tca}
